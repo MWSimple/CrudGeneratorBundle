@@ -1,0 +1,33 @@
+{
+    "name": "mwsimple/crud-generator",
+    "description": "This bundle generates code cute for you",
+    "keywords": ["crud", "generator", "bootstrap"],
+    "homepage": "https://github.com/MWSimple/CrudGeneratorBundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gonzalo Alonso",
+            "email": "gonkpo@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "~2.2",
+        "symfony/console": "~2.0"
+    },
+    "require-dev": {
+        "symfony/doctrine-bridge": "~2.2",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "twig/twig": "~1.11"
+    },
+    "autoload": {
+        "psr-0": { "MWSimple\\Bundle\\CrudGeneratorBundle": "" }
+    },
+    "target-dir": "MWSimple/Bundle/CrudGeneratorBundle",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.2.x-dev"
+        }
+    }
+}
