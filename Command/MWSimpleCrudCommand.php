@@ -19,7 +19,10 @@ use Symfony\Component\Console\Command\Command;
 use Sensio\Bundle\GeneratorBundle\Generator\DoctrineFormGenerator;
 use Sensio\Bundle\GeneratorBundle\Command\Helper\DialogHelper;
 use Sensio\Bundle\GeneratorBundle\Manipulator\RoutingManipulator;
-use MWSimple\Bundle\GeneratorBundle\Generator\MWSimpleCrudGenerator;
+
+use Sensio\Bundle\GeneratorBundle\Command\Validators;
+use Sensio\Bundle\GeneratorBundle\Command\GenerateDoctrineCommand;
+use MWSimple\Bundle\CrudGeneratorBundle\Generator\MWSimpleCrudGenerator;
 
 /**
  * Generates a CRUD for a Doctrine entity.
@@ -57,8 +60,8 @@ Using the --with-write option allows to generate the new, edit and delete action
 <info>php app/console doctrine:generate:crud --entity=AcmeBlogBundle:Post --route-prefix=post_admin --with-write</info>
 EOT
             )
-            ->setName('doctrine:generate:crud')
-            ->setAliases(array('generate:doctrine:crud'))
+            ->setName('mwsimple:generate:crud')
+            ->setAliases(array('generate:mwsimple:crud'))
         ;
     }
 
@@ -239,13 +242,13 @@ EOT
     protected function getGenerator()
     {
         if (null === $this->generator) {
-            $this->generator = new DoctrineCrudGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/crud');
+            $this->generator = new MWSimpleCrudGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/crud');
         }
 
         return $this->generator;
     }
 
-    public function setGenerator(DoctrineCrudGenerator $generator)
+    public function setGenerator(MWSimpleCrudGenerator $generator)
     {
         $this->generator = $generator;
     }
