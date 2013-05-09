@@ -1,8 +1,41 @@
-<h3>Mi Web Simple</h3>
-<br>
-<h1>CrudGeneratorBundle</h1>
-<br>
-<br>
-<br>
-<br>
-<h3>Author: Gonzalo Alonso</h3>
+## Mi Web Simple
+
+# CrudGeneratorBundle
+
+## Installation
+
+### Using composer
+
+Add following lines to your `composer.json` file:
+
+### Symfony 2.2
+
+    "require": {
+      ...
+      "mwsimple/crud-generator": "2.2.*@dev"
+    },
+    "minimum-stability": "dev"
+
+
+Execute:
+
+    php composer.phar update "mwsimple/crud-generator"
+
+Add it to the `AppKernel.php` class:
+
+    new MWSimple\Bundle\CrudGeneratorBundle\MWSimpleCrudGeneratorBundle(),
+
+## Dependencies
+
+This bundle extends [SensioGeneratorBundle](https://github.com/sensio/SensioGeneratorBundle) and add a paginator using ...(developing) and filter
+support using ...(developing) .
+
+## Usage
+
+Use following command from console:
+
+    app/console mwsimple:generate:crud
+
+## Author
+
+Gonzalo Alonso - gonkpo@gmail.com
