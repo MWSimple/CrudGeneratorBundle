@@ -1,6 +1,6 @@
 # CrudGeneratorBundle
 
-### This bundle generates code cute you extending SensioGeneratorBundle using KnpPaginatorBundle and Boostrap Templates.
+This bundle generates code cute you extending SensioGeneratorBundle using KnpPaginatorBundle and Boostrap Templates.
 
 ## Installation
 
@@ -41,6 +41,7 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
 
 ## Dependencies
 
