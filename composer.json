@@ -16,11 +16,6 @@
         "sensio/generator-bundle": "2.2.*",
         "knplabs/knp-paginator-bundle": "dev-master"
     },
-    "require-dev": {
-        "symfony/doctrine-bridge": "~2.2",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "twig/twig": "~1.11"
-    },
     "autoload": {
         "psr-0": { "MWSimple\\Bundle\\CrudGeneratorBundle": "" }
     },
