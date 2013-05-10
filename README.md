@@ -44,7 +44,7 @@ You can configure default query parameter names and templates
 
 ## Dependencies
 
-    This bundle extends [SensioGeneratorBundle](https://github.com/sensio/SensioGeneratorBundle) and add a paginator using [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and filter support using ...(developing) .
+This bundle extends [SensioGeneratorBundle](https://github.com/sensio/SensioGeneratorBundle) and add a paginator using [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and filter support using ...(developing) .
 
 ## Usage
 
