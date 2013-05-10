@@ -12,7 +12,7 @@
     {
         $em = $this->getDoctrine()->getManager();
 
-        $dql   = "SELECT a FROM AcmeBlogBundle:Post a ORDER BY a.id DESC";
+        $dql   = "SELECT a FROM {{ bundle }}:{{ entity }} a ORDER BY a.id DESC";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');
