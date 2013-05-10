@@ -14,7 +14,7 @@
     "require": {
         "symfony/symfony": "2.2.*",
         "sensio/generator-bundle": "2.2.*",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-paginator-bundle": "v2.3.2"
     },
     "autoload": {
         "psr-0": { "MWSimple\\Bundle\\CrudGeneratorBundle": "" }
