@@ -1,12 +1,7 @@
+{%- for action in record_actions %}
 
-                <ul>
+        <a class="btn btn-mini" href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}">
+            {{ "{{ 'views.actions." ~ action ~ "'|trans({}, 'MWSimpleCrudGeneratorBundle') }}" }}
+        </a>
 
-                {%- for action in record_actions %}
-
-                    <li>
-                        <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}">{{ action }}</a>
-                    </li>
-
-                {%- endfor %}
-
-                </ul>
+{%- endfor %}

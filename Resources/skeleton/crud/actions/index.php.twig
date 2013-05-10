@@ -12,15 +12,23 @@
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('{{ bundle }}:{{ entity }}')->findAll();
+        $dql   = "SELECT a FROM AcmeBlogBundle:Post a ORDER BY a.id DESC";
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
 
 {% if 'annotation' == format %}
         return array(
-            'entities' => $entities,
+            'entities' => $pagination,
         );
 {% else %}
         return $this->render('{{ bundle }}:{{ entity|replace({'\\': '/'}) }}:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $pagination,
         ));
 {% endif %}
     }

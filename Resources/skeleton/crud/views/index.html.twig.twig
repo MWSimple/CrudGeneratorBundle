@@ -1,60 +1,73 @@
-{{ "{% extends '::base.html.twig' %}" }}
+{{ "{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}" }}
 
-{{ "{% block body -%}" }}
-    <h1>{{ entity }} list</h1>
+{{ "{% block title %}" }}
+{{ "{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}
+{{ "{% endblock %}" }}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-            {%- for field, metadata in fields %}
+{{ "{% block page %}" }}
+<div class="row">
+    <div class="span8">
+        <h1>{{ "{{ 'views.index.list'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
+    </div>
 
-                <th>{{ field|capitalize }}</th>
+    <div class="span12">
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                {% for field, metadata in fields %}
 
-            {%- endfor %}
+                    <th{{ "{% if entities.isSorted('a." ~ field|capitalize ~ "') %}" }} class="sorted"{{ "{% endif %}" }}>{{ "{{ knp_pagination_sortable(entities, '" ~ field|capitalize ~ "', 'a." ~ field|lower ~ "') }}" }}</th>
+                    {#<th>{{ field|capitalize }}</th>#}
 
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {{ '{% for entity in entities %}' }}
-            <tr>
+                {% endfor %}
 
-        {%- for field, metadata in fields %}
-            {%- if loop.first and ('show' in actions) %}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{ '{% for entity in entities %}' }}
+                <tr>
 
-                <td><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</a></td>
+            {% for field, metadata in fields %}
+                {% if loop.first and ('show' in actions) %}
 
-            {%- elseif metadata.type in ['date', 'datetime'] %}
+                    <td><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</a></td>
 
-                <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+                {% elseif metadata.type in ['date', 'datetime'] %}
 
-            {%- else %}
+                    <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
 
-                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+                {% else %}
 
-            {%- endif %}
+                    <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
 
-            {%- if loop.last %}
+                {% endif %}
 
-                <td>
-                    {%- include "views/others/actions.html.twig.twig" %}
-                </td>
+                {% if loop.last %}
 
-            {%- endif %}
-        {%- endfor %}
+                    <td>
+                        {% include "views/others/actions.html.twig.twig" %}
+                    </td>
 
-            </tr>
-        {{ '{% endfor %}' }}
-        </tbody>
-    </table>
+                {% endif %}
+            {% endfor %}
+
+                </tr>
+            {{ '{% endfor %}' }}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="span4 navigation">
+        {{ "{{ knp_pagination_render(entities) }}" }}
+    </div>
 
     {% if 'new' in actions %}
-    <ul>
-        <li>
-            <a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div class="span8">
+        <a class="btn btn-primary likepaginator" href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}">
+            {{ "{{ 'views.index.createnew'|trans({}, 'MWSimpleCrudGeneratorBundle') }}" }} {{ entity }}
+        </a>
+    </div>
     {% endif %}
+</div>
 {{ "{% endblock %}" }}

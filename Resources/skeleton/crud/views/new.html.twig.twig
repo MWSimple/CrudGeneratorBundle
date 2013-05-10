@@ -1,12 +1,16 @@
-{{ "{% extends '::base.html.twig' %}" }}
+{{ "{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}" }}
 
-{{ "{% block body -%}" }}
-    <h1>{{ entity }} creation</h1>
+{{ "{% block title %}" }}
+{{ "{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}
+{{ "{% endblock %}" }}
 
-    <form action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
+{{ "{% block page %}" }}
+	<h1>{{ "{{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
+
+    <form class="well" action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
         {{ "{{ form_widget(form) }}" }}
         <p>
-            <button type="submit">Create</button>
+            <button type="submit" class="btn btn-success">{{ "{{ 'views.new.create'|trans({}, 'MWSimpleCrudGeneratorBundle') }}" }}</button>
         </p>
     </form>
 
