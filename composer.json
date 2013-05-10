@@ -13,7 +13,8 @@
     ],
     "require": {
         "symfony/framework-bundle": "~2.2",
-        "symfony/console": "~2.0"
+        "symfony/console": "~2.0",
+        "knplabs/knp-paginator-bundle": "dev-master"
     },
     "require-dev": {
         "symfony/doctrine-bridge": "~2.2",
