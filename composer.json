@@ -12,8 +12,8 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.2",
-        "symfony/console": "~2.0",
+        "symfony/symfony": "2.2.*",
+        "sensio/generator-bundle": "2.2.*",
         "knplabs/knp-paginator-bundle": "dev-master"
     },
     "require-dev": {
