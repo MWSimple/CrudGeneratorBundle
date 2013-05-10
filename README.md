@@ -28,9 +28,8 @@ Add it to the `AppKernel.php` class:
 
 ### Configuration paginator example
 
-You can configure default query parameter names and templates
+You can configure `config.yml` default query parameter names and templates
 
-    ```yaml
     knp_paginator:
         page_range: 5                      # default page range used in pagination control
         default_options:
