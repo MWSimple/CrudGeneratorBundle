@@ -13,8 +13,12 @@
             <div class="control-group">
                 <label class="control-label">{{ field|capitalize }}</label>
                 <div class="controls">
-                    {%- if metadata.type in ['date', 'datetime'] %}
+                    {%- if metadata.type in ['datetime'] %}
                     <span class="input-xlarge uneditable-input">{{ '{{ entity.'~ field|replace({'_': ''}) ~'|date(\'Y-m-d H:i:s\') }}' }}</span>
+                    {%- elseif metadata.type in ['date'] %}
+                    <span class="input-xlarge uneditable-input">{{ '{{ entity.'~ field|replace({'_': ''}) ~'|date(\'Y-m-d\') }}' }}</span>
+                    {%- elseif metadata.type in ['time'] %}
+                    <span class="input-xlarge uneditable-input">{{ '{{ entity.'~ field|replace({'_': ''}) ~'|date(\'H:i:s\') }}' }}</span>
                     {%- else %}
                     <span class="input-xlarge uneditable-input">{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</span>
                     {%- endif %}
