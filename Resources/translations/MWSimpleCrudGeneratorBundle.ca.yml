@@ -10,6 +10,7 @@ views:
         createnew: Crear
         pagprev: '&larr; Anterior'
         pagnext: 'Següent &rarr;'
+        actions: Accions
     actions:
         show: veure
         edit: editar
