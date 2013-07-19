@@ -16,7 +16,17 @@ class {{ form_class }} extends AbstractType
             ->add('{{ field }}')
 
         {%- endfor %}
-
+            
+            ->add('save', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label' => 'views.new.save',
+                'attr' => array('class' => 'btn btn-success')
+            ))
+            ->add('saveAndAdd', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label' => 'views.new.saveAndAdd',
+                'attr' => array('class' => 'btn btn-primary')
+            ))
         ;
     }
 

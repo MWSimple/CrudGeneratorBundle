@@ -21,13 +21,18 @@
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
             {% if 'show' in actions -%}
-                return $this->redirect($this->generateUrl('{{ route_name_prefix }}_show', array('id' => $entity->getId())));
+                $nextAction = $form->get('saveAndAdd')->isClicked()
+                    ? $this->generateUrl('{{ route_name_prefix }}_new')
+                    : $this->generateUrl('{{ route_name_prefix }}_show', array('id' => $entity->getId()));
             {%- else -%}
-                return $this->redirect($this->generateUrl('{{ route_name_prefix }}'));
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                    ? $this->generateUrl('{{ route_name_prefix }}_new')
+                    : $this->generateUrl('{{ route_name_prefix }}');
             {%- endif %}
 
+            return $this->redirect($nextAction);
         }
-        $this->get('session')->getFlashBag()->add('success', 'flash.create.error');
+        $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
 
 {% if 'annotation' == format %}
         return array(

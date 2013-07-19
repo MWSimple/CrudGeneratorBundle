@@ -22,6 +22,8 @@ views:
     new:
         creation: Crear %entity%
         create: Crear
+        save: Guardar
+        saveAndAdd: Guardar y agregar
     edit:
         edit: Editar %entity%
         editbutton: Editar

@@ -27,10 +27,20 @@
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('{{ route_name_prefix }}_edit', array('id' => $id)));
+            {% if 'show' in actions -%}
+                $nextAction = $editForm->get('saveAndAdd')->isClicked()
+                    ? $this->generateUrl('{{ route_name_prefix }}_new')
+                    : $this->generateUrl('{{ route_name_prefix }}_show', array('id' => $id));
+            {%- else -%}
+                $nextAction = $editForm->get('saveAndAdd')->isClicked()
+                    ? $this->generateUrl('{{ route_name_prefix }}_new')
+                    : $this->generateUrl('{{ route_name_prefix }}_edit', array('id' => $id));
+            {%- endif %}
+
+            return $this->redirect($nextAction);
         }
 
-        $this->get('session')->getFlashBag()->add('success', 'flash.update.error');
+        $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
 
 {% if 'annotation' == format %}
         return array(
