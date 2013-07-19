@@ -40,6 +40,18 @@ You can configure `config.yml` default query parameter names and templates
             pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
             sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
+### Configure translations (include en, es, ca)
+
+You can configure `config.yml`
+
+    framework:
+        ...
+        translator:      { fallback: %locale% } # uncomment line
+
+### Install assets
+
+    app/console assets:install
+
 ## Dependencies
 
 This bundle extends [SensioGeneratorBundle](https://github.com/sensio/SensioGeneratorBundle) and add a paginator using [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and filter support using ...(developing) .
