@@ -12,7 +12,7 @@ Add following lines to your `composer.json` file:
 
     "require": {
       ...
-      "mwsimple/crud-generator": "dev-master"
+      "mwsimple/crud-generator": "2.3.*@dev"
     }
 
 Execute:
