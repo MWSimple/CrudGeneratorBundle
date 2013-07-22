@@ -1,4 +1,3 @@
-
     /**
      * Lists all {{ entity }} entities.
      *
@@ -43,8 +42,8 @@
         $filterForm = $this->createForm(new {{ entity }}FilterType());
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('{{ bundle }}:{{ entity }}')
-            ->createQueryBuilder('e')
-            ->orderBy('e.id', 'DESC')
+            ->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
         ;
 
         // Reset filter
