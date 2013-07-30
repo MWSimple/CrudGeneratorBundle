@@ -53,7 +53,7 @@
                 <tr>
                 {% for field, metadata in fields %}
 
-                    <th{{ "{% if entities.isSorted('a." ~ field|capitalize ~ "') %}" }} class="sorted"{{ "{% endif %}" }}>{{ "{{ knp_pagination_sortable(entities, '" ~ field|capitalize ~ "', 'a." ~ field|lower ~ "') }}" }}</th>
+                    <th{{ "{% if entities.isSorted('a." ~ field|capitalize ~ "') %}" }} class="sorted"{{ "{% endif %}" }}>{{ "{{ knp_pagination_sortable(entities, '" ~ field|capitalize ~ "', 'a." ~ field ~ "') }}" }}</th>
                     {#<th>{{ field|capitalize }}</th>#}
 
                 {% endfor %}
