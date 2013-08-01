@@ -10,7 +10,7 @@
         <h1>{{ "{{ 'views.index.list'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
     </div>
     <div class="span2">
-        {{ '{% if form_errors(filterForm) %}' }}
+        {{ '{% if filterForm.vars.errors|length > 0 %}' }}
         <div class="alert alert-block alert-error fade in form-errors">
             {{ '{{ form_errors(filterForm) }}' }}
         </div>
