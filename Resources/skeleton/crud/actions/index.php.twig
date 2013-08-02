@@ -1,10 +1,12 @@
+
     /**
      * Lists all {{ entity }} entities.
-     *
 {% if 'annotation' == format %}
+     *
      * @Route("/", name="{{ route_name_prefix }}")
      * @Method("GET")
      * @Template()
+     * @return view
 {% endif %}
      */
     public function indexAction()
@@ -14,18 +16,18 @@
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $queryBuilder,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
+            $this->get('request')->query->get('page', 1),
+            10
         );
 
 {% if 'annotation' == format %}
         return array(
-            'entities' => $pagination,
+            'entities'   => $pagination,
             'filterForm' => $filterForm->createView(),
         );
 {% else %}
         return $this->render('{{ bundle }}:{{ entity|replace({'\\': '/'}) }}:index.html.twig', array(
-            'entities' => $pagination,
+            'entities'   => $pagination,
             'filterForm' => $filterForm->createView(),
         ));
 {% endif %}
@@ -34,6 +36,7 @@
     /**
     * Create filter form and process filter request.
     *
+    * @return array
     */
     protected function filter()
     {
@@ -43,8 +46,7 @@
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('{{ bundle }}:{{ entity }}')
             ->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
-        ;
+            ->orderBy('a.id', 'DESC');
 
         // Reset filter
         if ($request->get('filter_action') == 'reset') {

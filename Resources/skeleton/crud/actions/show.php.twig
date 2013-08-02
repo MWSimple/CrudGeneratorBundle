@@ -3,9 +3,12 @@
      * Finds and displays a {{ entity }} entity.
      *
 {% if 'annotation' == format %}
+     * @param type $id Id de la entidad
+     *
      * @Route("/{id}", name="{{ route_name_prefix }}_show")
      * @Method("GET")
      * @Template()
+     * @return view
 {% endif %}
      */
     public function showAction($id)

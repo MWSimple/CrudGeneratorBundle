@@ -9,8 +9,21 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 
+/**
+ * Filtro
+ * 
+ * @author Nombre Apellido <name@gmail.com>
+ */
 class {{ form_class }} extends AbstractType
 {
+    /**
+     * Form
+     * 
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder Builder
+     * @param array                                        $options Options
+     * 
+     * @return Form
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -18,21 +31,22 @@ class {{ form_class }} extends AbstractType
 
             ->add('{{ data.fieldName }}', '{{ data.filterWidget }}')
 
-        {%- endfor %}
-
-        ;
+        {%- endfor %};
 
         $listener = function(FormEvent $event)
         {
             // Is data empty?
             foreach ($event->getData() as $data) {
-                if(is_array($data)) {
+                if ( is_array($data)) {
                     foreach ($data as $subData) {
-                        if(!empty($subData)) return;
+                        if (!empty($subData)) {
+                            return;
+                        }    
                     }
-                }
-                else {
-                    if(!empty($data)) return;
+                } else {
+                    if (!empty($data)) {
+                        return;
+                    }    
                 }
             }
 
@@ -40,7 +54,12 @@ class {{ form_class }} extends AbstractType
         };
         $builder->addEventListener(FormEvents::POST_BIND, $listener);
     }
-
+    
+    /**
+    * Nombre
+    * 
+    * @return string
+    */
     public function getName()
     {
         return '{{ form_filter_type_name }}';

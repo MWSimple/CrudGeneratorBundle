@@ -3,9 +3,13 @@
      * Edits an existing {{ entity }} entity.
      *
 {% if 'annotation' == format %}
+     * @param type $request Peticion
+     * @param type $id      Id de la entidad
+     *
      * @Route("/{id}", name="{{ route_name_prefix }}_update")
      * @Method("PUT")
      * @Template("{{ bundle }}:{{ entity }}:edit.html.twig")
+     * @return view
 {% endif %}
      */
     public function updateAction(Request $request, $id)
@@ -29,8 +33,8 @@
 
             {% if 'show' in actions -%}
                 $nextAction = $editForm->get('saveAndAdd')->isClicked()
-                    ? $this->generateUrl('{{ route_name_prefix }}_new')
-                    : $this->generateUrl('{{ route_name_prefix }}_show', array('id' => $id));
+                        ? $this->generateUrl('{{ route_name_prefix }}_new')
+                        : $this->generateUrl('{{ route_name_prefix }}_show', array('id' => $id));
             {%- else -%}
                 $nextAction = $editForm->get('saveAndAdd')->isClicked()
                     ? $this->generateUrl('{{ route_name_prefix }}_new')

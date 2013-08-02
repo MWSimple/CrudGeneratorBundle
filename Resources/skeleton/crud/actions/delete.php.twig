@@ -2,14 +2,18 @@
     /**
      * Deletes a {{ entity }} entity.
      *
+     * @param type $request Peticion
+     * @param type $id      Id de la entidad
+     *
 {% if 'annotation' == format %}
      * @Route("/{id}", name="{{ route_name_prefix }}_delete")
      * @Method("DELETE")
+     * @return void
 {% endif %}
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->_createDeleteForm($id);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -35,10 +39,9 @@
      *
      * @return Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function _createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }

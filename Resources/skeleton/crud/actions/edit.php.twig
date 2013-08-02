@@ -3,9 +3,12 @@
      * Displays a form to edit an existing {{ entity }} entity.
      *
 {% if 'annotation' == format %}
+     * @param type $id Id de la entidad
+     *
      * @Route("/{id}/edit", name="{{ route_name_prefix }}_edit")
      * @Method("GET")
      * @Template()
+     * @return view
 {% endif %}
      */
     public function editAction($id)
