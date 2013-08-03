@@ -22,7 +22,7 @@
         }
 
         $editForm = $this->createForm(new {{ entity_class }}Type(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->_createDeleteForm($id);
 
 {% if 'annotation' == format %}
         return array(
