@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Sensio\Bundle\GeneratorBundle\Command\Validators;
 use Sensio\Bundle\GeneratorBundle\Command\GenerateDoctrineCrudCommand;
 use MWSimple\Bundle\CrudGeneratorBundle\Generator\MWSimpleCrudGenerator;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 /**
  * Generates a CRUD for a Doctrine entity.
@@ -31,7 +32,7 @@ class MWSimpleCrudCommand extends GenerateDoctrineCrudCommand
         return new MWSimpleCrudGenerator($this->getContainer()->get('filesystem'));
     }
 
-    protected function getSkeletonDirs($bundle = null)
+    protected function getSkeletonDirs(BundleInterface $bundle = null)
     {
         $skeletonDirs = array();
 
