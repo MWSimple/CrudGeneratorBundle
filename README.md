@@ -22,7 +22,7 @@ Add following lines to your `composer.json` file:
       "mwsimple/crud-generator": "v2.3.3"
     }
 
-### Symfony 2.3.6 + (development)
+### Symfony 2.3.6 +
 
     "require": {
       ...
