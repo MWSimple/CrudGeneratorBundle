@@ -1,16 +1,18 @@
+{% block extends %}
 {{ "{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}" }}
+{% endblock extends %}
 
+{% block body %}
 {{ "{% block title %}" }}
 {{ "{{ parent() }} - {{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}
 {{ "{% endblock %}" }}
 
 {{ "{% block page %}" }}
-	<h1>{{ "{{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
+    <h1>{{ "{{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
 
-    <form class="well" action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
-        {{ "{{ form_widget(form) }}" }}
-    </form>
+    {{ '{{ form(form) }}' }}
 
     {% set hide_edit, hide_delete = true, true %}
     {% include 'crud/views/others/record_actions.html.twig.twig' %}
 {{ "{% endblock %}" }}
+{% endblock body %}

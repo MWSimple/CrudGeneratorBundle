@@ -1,19 +1,21 @@
-
     /**
+{% block phpdoc_method_header %}
      * Edits an existing {{ entity }} entity.
+{% endblock phpdoc_method_header %}
      *
+{% block phpdoc_method_annotations %}
 {% if 'annotation' == format %}
-     * @param type $request Peticion
-     * @param type $id      Id de la entidad
-     *
      * @Route("/{id}", name="{{ route_name_prefix }}_update")
      * @Method("PUT")
      * @Template("{{ bundle }}:{{ entity }}:edit.html.twig")
-     * @return view
 {% endif %}
+{% endblock phpdoc_method_annotations %}
      */
+{% block method_definition %}
     public function updateAction(Request $request, $id)
+{% endblock method_definition %}
     {
+{% block method_body %}
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('{{ bundle }}:{{ entity }}')->find($id);
@@ -22,12 +24,11 @@
             throw $this->createNotFoundException('Unable to find {{ entity }} entity.');
         }
 
-        $deleteForm = $this->_createDeleteForm($id);
-        $editForm = $this->createForm(new {{ entity_class }}Type(), $entity);
-        $editForm->bind($request);
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
@@ -45,7 +46,9 @@
         }
 
         $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
+{% endblock method_body %}
 
+{% block method_return %}
 {% if 'annotation' == format %}
         return array(
             'entity'      => $entity,
@@ -59,4 +62,5 @@
             'delete_form' => $deleteForm->createView(),
         ));
 {% endif %}
+{% endblock method_return %}
     }

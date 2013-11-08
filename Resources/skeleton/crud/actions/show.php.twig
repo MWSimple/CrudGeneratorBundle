@@ -1,18 +1,22 @@
 
     /**
+{% block phpdoc_method_header %}
      * Finds and displays a {{ entity }} entity.
+{% endblock phpdoc_method_header %}
      *
+{% block phpdoc_method_annotations %}
 {% if 'annotation' == format %}
-     * @param type $id Id de la entidad
-     *
      * @Route("/{id}", name="{{ route_name_prefix }}_show")
      * @Method("GET")
      * @Template()
-     * @return view
 {% endif %}
+{% endblock phpdoc_method_annotations %}
      */
+{% block method_definition %}
     public function showAction($id)
+{% endblock method_definition %}
     {
+{% block method_body %}
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('{{ bundle }}:{{ entity }}')->find($id);
@@ -22,9 +26,11 @@
         }
 {% if 'delete' in actions %}
 
-        $deleteForm = $this->_createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id);
 {% endif %}
+{% endblock method_body %}
 
+{% block method_return %}
 {% if 'annotation' == format %}
         return array(
             'entity'      => $entity,
@@ -40,4 +46,5 @@
 {%- endif %}
         ));
 {% endif %}
+{% endblock method_return %}
     }

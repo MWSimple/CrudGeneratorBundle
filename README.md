@@ -19,6 +19,13 @@ Add following lines to your `composer.json` file:
 
     "require": {
       ...
+      "mwsimple/crud-generator": "v2.3.3"
+    }
+
+### Symfony 2.3.6 + (development)
+
+    "require": {
+      ...
       "mwsimple/crud-generator": "2.3.*@dev"
     }
 

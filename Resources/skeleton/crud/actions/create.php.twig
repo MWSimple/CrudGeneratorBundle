@@ -1,21 +1,24 @@
-
     /**
+{% block phpdoc_method_header %}
      * Creates a new {{ entity }} entity.
+{% endblock phpdoc_method_header %}
      *
+{% block phpdoc_method_annotations %}
 {% if 'annotation' == format %}
-     * @param type $request Peticion
-     *
      * @Route("/", name="{{ route_name_prefix }}_create")
      * @Method("POST")
      * @Template("{{ bundle }}:{{ entity }}:new.html.twig")
-     * @return view
 {% endif %}
+{% endblock phpdoc_method_annotations %}
      */
+{% block method_definition %}
     public function createAction(Request $request)
+{% endblock method_definition %}
     {
-        $entity  = new {{ entity_class }}();
-        $form = $this->createForm(new {{ entity_class }}Type(), $entity);
-        $form->bind($request);
+{% block method_body %}
+        $entity = new {{ entity_class }}();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -25,18 +28,21 @@
 
             {% if 'show' in actions -%}
                 $nextAction = $form->get('saveAndAdd')->isClicked()
-                        ? $this->generateUrl('{{ route_name_prefix }}_new')
-                        : $this->generateUrl('{{ route_name_prefix }}_show', array('id' => $entity->getId()));
+                    ? $this->generateUrl('{{ route_name_prefix }}_new')
+                    : $this->generateUrl('{{ route_name_prefix }}_show', array('id' => $entity->getId()));
             {%- else -%}
-            $nextAction = $form->get('saveAndAdd')->isClicked()
-                        ? $this->generateUrl('{{ route_name_prefix }}_new')
-                        : $this->generateUrl('{{ route_name_prefix }}');
+                $nextAction = $form->get('saveAndAdd')->isClicked()
+                    ? $this->generateUrl('{{ route_name_prefix }}_new')
+                    : $this->generateUrl('{{ route_name_prefix }}');
             {%- endif %}
 
             return $this->redirect($nextAction);
+
         }
         $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
+{% endblock method_body %}
 
+{% block method_return %}
 {% if 'annotation' == format %}
         return array(
             'entity' => $entity,
@@ -48,4 +54,41 @@
             'form'   => $form->createView(),
         ));
 {% endif %}
+{% endblock method_return %}
     }
+
+{% block form %}
+    /**
+    * Creates a form to create a {{ entity }} entity.
+    *
+    * @param {{ entity_class }} $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm({{ entity_class }} $entity)
+    {
+        $form = $this->createForm(new {{ entity_class }}Type(), $entity, array(
+            'action' => $this->generateUrl('{{ route_name_prefix }}_create'),
+            'method' => 'POST',
+        ));
+
+        $form
+            ->add(
+                'save', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.new.save',
+                'attr'               => array('class' => 'btn btn-success')
+                )
+            )
+            ->add(
+                'saveAndAdd', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.new.saveAndAdd',
+                'attr'               => array('class' => 'btn btn-primary')
+                )
+            )
+        ;
+
+        return $form;
+    }
+{% endblock form %}

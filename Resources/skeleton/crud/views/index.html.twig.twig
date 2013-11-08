@@ -1,5 +1,8 @@
+{% block extends %}
 {{ "{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}" }}
+{% endblock extends %}
 
+{% block body %}
 {{ "{% block title %}" }}
 {{ "{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}
 {{ "{% endblock %}" }}
@@ -51,12 +54,11 @@
         <table class="table table-striped table-bordered table-condensed">
             <thead>
                 <tr>
-                {% for field, metadata in fields %}
+                {%- for field, metadata in fields %}
 
                     <th{{ "{% if entities.isSorted('a." ~ field|capitalize ~ "') %}" }} class="sorted"{{ "{% endif %}" }}>{{ "{{ knp_pagination_sortable(entities, '" ~ field|capitalize ~ "', 'a." ~ field ~ "') }}" }}</th>
-                    {#<th>{{ field|capitalize }}</th>#}
 
-                {% endfor %}
+                {%- endfor %}
 
                     <th>{{ "{{ 'views.index.actions'|trans({}, 'MWSimpleCrudGeneratorBundle') }}" }}</th>
                 </tr>
@@ -65,37 +67,37 @@
             {{ '{% for entity in entities %}' }}
                 <tr>
 
-            {% for field, metadata in fields %}
-                {% if loop.first and ('show' in actions) %}
+            {%- for field, metadata in fields %}
+                {%- if loop.first and ('show' in actions) %}
 
                     <td><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</a></td>
 
-                {% elseif metadata.type in ['datetime'] %}
+                {%- elseif metadata.type in ['datetime'] %}
 
                     <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
 
-                {% elseif metadata.type in ['date'] %}
+                {%- elseif metadata.type in ['date'] %}
 
                     <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d\') }}{% endif %}' }}</td>
 
-                {% elseif metadata.type in ['time'] %}
+                {%- elseif metadata.type in ['time'] %}
 
                     <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'H:i:s\') }}{% endif %}' }}</td>
 
-                {% else %}
+                {%- else %}
 
                     <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
 
-                {% endif %}
+                {%- endif %}
 
-                {% if loop.last %}
+                {%- if loop.last %}
 
                     <td>
                         {% include "crud/views/others/actions.html.twig.twig" %}
                     </td>
 
-                {% endif %}
-            {% endfor %}
+                {%- endif %}
+            {%- endfor %}
 
                 </tr>
             {{ '{% endfor %}' }}
@@ -116,3 +118,4 @@
     {% endif %}
 </div>
 {{ "{% endblock %}" }}
+{% endblock body %}

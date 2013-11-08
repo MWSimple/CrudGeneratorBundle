@@ -15,7 +15,7 @@
         "symfony/symfony": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "knplabs/knp-paginator-bundle": "2.3.*@dev",
-        "lexik/form-filter-bundle": "1.2.*"
+        "lexik/form-filter-bundle": "2.*"
     },
     "autoload": {
         "psr-0": { "MWSimple\\Bundle\\CrudGeneratorBundle": "" }

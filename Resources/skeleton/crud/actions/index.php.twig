@@ -1,16 +1,22 @@
 
     /**
+{% block phpdoc_method_header %}
      * Lists all {{ entity }} entities.
-{% if 'annotation' == format %}
+{% endblock phpdoc_method_header %}
      *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
      * @Route("/", name="{{ route_name_prefix }}")
      * @Method("GET")
      * @Template()
-     * @return view
 {% endif %}
+{% endblock phpdoc_method_annotations %}
      */
+{% block method_definition %}
     public function indexAction()
+{% endblock method_definition %}
     {
+{% block method_body %}
         list($filterForm, $queryBuilder) = $this->filter();
 
         $paginator  = $this->get('knp_paginator');
@@ -19,7 +25,9 @@
             $this->get('request')->query->get('page', 1),
             10
         );
+{% endblock method_body %}
 
+{% block method_return %}
 {% if 'annotation' == format %}
         return array(
             'entities'   => $pagination,
@@ -31,6 +39,7 @@
             'filterForm' => $filterForm->createView(),
         ));
 {% endif %}
+{% endblock method_return %}
     }
 
     /**
