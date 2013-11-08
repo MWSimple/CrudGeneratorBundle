@@ -43,7 +43,7 @@
     }
 
     /**
-    * Create filter form and process filter request.
+    * Process filter request.
     *
     * @return array
     */
@@ -51,22 +51,22 @@
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-        $filterForm = $this->createForm(new {{ entity }}FilterType());
+        $filterForm = $this->createFilterForm();
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('{{ bundle }}:{{ entity }}')
             ->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC');
-
+            ->orderBy('a.id', 'DESC')
+        ;
+        // Bind values from the request
+        $filterForm->handleRequest($request);
         // Reset filter
-        if ($request->get('filter_action') == 'reset') {
+        if ($filterForm->get('reset')->isClicked()) {
             $session->remove('{{ entity }}ControllerFilter');
+            $filterForm = $this->createFilterForm();
         }
 
         // Filter action
-        if ($request->get('filter_action') == 'filter') {
-            // Bind values from the request
-            $filterForm->bind($request);
-
+        if ($filterForm->get('filter')->isClicked()) {
             if ($filterForm->isValid()) {
                 // Build the query from the given form object
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
@@ -78,10 +78,37 @@
             // Get filter from session
             if ($session->has('{{ entity }}ControllerFilter')) {
                 $filterData = $session->get('{{ entity }}ControllerFilter');
-                $filterForm = $this->createForm(new {{ entity }}FilterType(), $filterData);
+                $filterForm = $this->createFilterForm($filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
 
         return array($filterForm, $queryBuilder);
+    }
+    /**
+    * Create filter form.
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createFilterForm($filterData = null)
+    {
+        $form = $this->createForm(new {{ entity }}FilterType(), $filterData, array(
+            'action' => $this->generateUrl('{{ route_name_prefix }}'),
+            'method' => 'GET',
+        ));
+
+        $form
+            ->add('filter', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.index.filter',
+                'attr'               => array('class' => 'btn btn-success'),
+            ))
+            ->add('reset', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.index.reset',
+                'attr'               => array('class' => 'btn btn-danger'),
+            ))
+        ;
+
+        return $form;
     }

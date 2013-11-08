@@ -40,12 +40,12 @@ class {{ form_class }} extends AbstractType
         $listener = function(FormEvent $event)
         {
             // Is data empty?
-            foreach ($event->getData() as $data) {
+            foreach ((array)$event->getForm()->getData() as $data) {
                 if ( is_array($data)) {
                     foreach ($data as $subData) {
                         if (!empty($subData)) {
                             return;
-                        }    
+                        }
                     }
                 } else {
                     if (!empty($data)) {
@@ -53,10 +53,9 @@ class {{ form_class }} extends AbstractType
                     }    
                 }
             }
-
             $event->getForm()->addError(new FormError('Filter empty'));
         };
-        $builder->addEventListener(FormEvents::POST_BIND, $listener);
+        $builder->addEventListener(FormEvents::POST_SUBMIT, $listener);
     }
     {% endif %}
 
