@@ -26,12 +26,21 @@ Add following lines to your `composer.json` file:
 }
 ```
 
-### Symfony 2.3.6 +
+### Symfony > 2.3.6 + Include Boostrap 2
 
 ```json
 "require": {
 	...
-	"mwsimple/crud-generator": "2.3.*@dev"
+	"mwsimple/crud-generator": "dev-2.3-bootstrap2"
+}
+```
+
+### Symfony 2.3.9 + Include Boostrap 3
+
+```json
+"require": {
+    ...
+    "mwsimple/crud-generator": "2.3.9.*@dev"
 }
 ```
 
@@ -110,3 +119,7 @@ app/console mwsimple:generate:crud
 ## Author
 
 Gonzalo Alonso - gonkpo@gmail.com
+
+## Bootstrap 3
+
+Tito Canteros - titocanteros@gmail.com
