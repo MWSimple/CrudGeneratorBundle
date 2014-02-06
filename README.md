@@ -40,7 +40,7 @@ Add following lines to your `composer.json` file:
 ```json
 "require": {
     ...
-    "mwsimple/crud-generator": "2.3.9.*@dev"
+    "mwsimple/crud-generator": "v2.3.9"
 }
 ```
 
