@@ -39,7 +39,7 @@
             return $this->redirect($nextAction);
 
         }
-        $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
+        $this->get('session')->getFlashBag()->add('danger', 'flash.create.error');
 {% endblock method_body %}
 
 {% block method_return %}

@@ -45,7 +45,7 @@
             return $this->redirect($nextAction);
         }
 
-        $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
+        $this->get('session')->getFlashBag()->add('danger', 'flash.update.error');
 {% endblock method_body %}
 
 {% block method_return %}
