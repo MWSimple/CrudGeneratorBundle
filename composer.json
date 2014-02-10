@@ -14,7 +14,7 @@
     "require": {
         "symfony/symfony": "~2.3",
         "sensio/generator-bundle": "2.3.*",
-        "knplabs/knp-paginator-bundle": "v2.3.2",
+        "knplabs/knp-paginator-bundle": "2.4.0",
         "lexik/form-filter-bundle": "v2.0.2"
     },
     "autoload": {
