@@ -9,10 +9,22 @@
 
 {{ "{% block page %}" }}
     <h1>{{ "{{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
-
+    
+    {{ "{% form_theme form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}" }}
     {{ '{{ form(form) }}' }}
 
     {% set hide_edit, hide_delete = true, true %}
     {% include 'crud/views/others/record_actions.html.twig.twig' %}
 {{ "{% endblock %}" }}
 {% endblock body %}
+    
+{{ "{% block javascript %}"}}
+<script type="text/javascript">
+$('input[type="checkbox"].style2').checkbox({
+    buttonStyle: 'btn btn-base',
+    buttonStyleChecked: 'btn btn-success',
+    checkedClass: 'glyphicon glyphicon-check',
+    uncheckedClass: 'glyphicon glyphicon-unchecked'
+});
+</script>
+{{ "{% endblock %}" }}       

@@ -1,0 +1,21 @@
+{% block text_widget %}
+    <div class="form-group">
+        {% set type = type|default('text') %}
+         <input class="form-control" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    </div>
+{% endblock %}
+
+{% block textarea_widget %}
+    <div class="input-group input-group-lg">
+        {% set type = type|default('textarea') %}
+            <textarea class="form-control" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+
+            </textarea>
+    </div>
+{% endblock %}
+
+
+{% block checkbox_widget %}
+        {% set type = type|default('checkbox') %}
+         <input class="style2" type="{{ type }}" {{ block('widget_attributes') }} checked="checked" {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endblock %}
