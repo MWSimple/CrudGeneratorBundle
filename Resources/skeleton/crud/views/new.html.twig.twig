@@ -33,11 +33,13 @@
     
 {{ "{% block javascript %}"}}
 <script type="text/javascript">
+if ($(".checkbox").size()){   
 $('input[type="checkbox"].style2').checkbox({
     buttonStyle: 'btn btn-base',
     buttonStyleChecked: 'btn btn-success',
     checkedClass: 'glyphicon glyphicon-check',
     uncheckedClass: 'glyphicon glyphicon-unchecked'
 });
+}
 </script>
 {{ "{% endblock %}" }}       

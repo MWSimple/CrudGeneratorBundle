@@ -8,14 +8,12 @@
 {{ "{% endblock %}" }}
 
 {{ "{% block page %}" }}
-    <h1>{{ "{{ 'views.edit.edit'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}</h1>
-
     {{ "{% form_theme edit_form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}" }}
     
     <div class="panel panel-default center-block">
         <div class="panel-heading">
             <h3 class="panel-title center-block">
-                {{ "{{ 'views.new.creation'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}
+                {{ "{{ 'views.edit.edit'|trans({'%entity%': '" }}{{ entity }}{{ "'}, 'MWSimpleCrudGeneratorBundle') }}" }}
             </h3>
         </div>
             
@@ -32,12 +30,14 @@
     
 {{ "{% block javascript %}"}}
 <script type="text/javascript">
+if ($(".checkbox").size()){    
 $('input[type="checkbox"].style2').checkbox({
     buttonStyle: 'btn btn-base',
     buttonStyleChecked: 'btn btn-success',
     checkedClass: 'glyphicon glyphicon-check',
     uncheckedClass: 'glyphicon glyphicon-unchecked'
 });
+}
 </script>
 {{ "{% endblock %}" }}       
     
