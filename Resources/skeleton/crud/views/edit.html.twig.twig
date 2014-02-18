@@ -9,7 +9,7 @@
 
 {{ "{% block page %}" }}
     {{ "{% form_theme edit_form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}" }}
-    
+
     <div class="panel panel-default center-block">
         <div class="panel-heading">
             <h3 class="panel-title center-block">
@@ -21,23 +21,21 @@
             {{ '{{ form(edit_form) }}' }}
         </div>
     </div>
-
-
     {% set hide_edit, hide_delete = true, false %}
     {% include 'crud/views/others/record_actions.html.twig.twig' %}
 {{ "{% endblock %}" }}
 {% endblock body %}
-    
+
 {{ "{% block javascript %}"}}
-<script type="text/javascript">
-if ($(".style2").size()){    
-$('input[type="checkbox"].style2').checkbox({
-    buttonStyle: 'btn btn-base',
-    buttonStyleChecked: 'btn btn-success',
-    checkedClass: 'glyphicon glyphicon-check',
-    uncheckedClass: 'glyphicon glyphicon-unchecked'
-});
-}
-</script>
-{{ "{% endblock %}" }}       
-    
+    {{ "{{ parent() }}" }}
+    <script type="text/javascript">
+        if ($(".style2").size()){   
+            $('input[type="checkbox"].style2').checkbox({
+                buttonStyle: 'btn btn-base',
+                buttonStyleChecked: 'btn btn-success',
+                checkedClass: 'glyphicon glyphicon-check',
+                uncheckedClass: 'glyphicon glyphicon-unchecked'
+            });
+        }
+    </script>
+{{ "{% endblock %}" }}
