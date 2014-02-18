@@ -23,7 +23,7 @@
         $pagination = $paginator->paginate(
             $queryBuilder,
             $this->get('request')->query->get('page', 1),
-            10
+            (isset($this->container->parameters['knp_paginator.page_range'])) ? $this->container->parameters['knp_paginator.page_range'] : 10
         );
 {% endblock method_body %}
 
