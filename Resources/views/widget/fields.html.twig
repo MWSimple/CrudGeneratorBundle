@@ -8,9 +8,9 @@
 {% block textarea_widget %}
     <div class="input-group input-group-lg">
         {% set type = type|default('textarea') %}
-            <textarea class="form-control" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
-
-            </textarea>
+        <textarea class="form-control" type="{{ type }}" {{ block('widget_attributes') }}>
+            {% if value is not empty %}{{ value }}{% endif %}
+        </textarea>
     </div>
 {% endblock %}
 
