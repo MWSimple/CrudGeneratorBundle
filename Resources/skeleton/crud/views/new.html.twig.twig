@@ -28,14 +28,5 @@
     
 {{ "{% block javascript %}"}}
     {{ "{{ parent() }}" }}
-    <script type="text/javascript">
-        if ($(".style2").size()){   
-            $('input[type="checkbox"].style2').checkbox({
-                buttonStyle: 'btn btn-base',
-                buttonStyleChecked: 'btn btn-success',
-                checkedClass: 'glyphicon glyphicon-check',
-                uncheckedClass: 'glyphicon glyphicon-unchecked'
-            });
-        }
-    </script>
+    <script src="{{ "{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}" }}"></script>
 {{ "{% endblock %}" }}
