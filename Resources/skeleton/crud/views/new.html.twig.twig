@@ -8,8 +8,6 @@
 {{ "{% endblock %}" }}
 
 {{ "{% block page %}" }}
-    
-    
     {{ "{% form_theme form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}" }}
     <div class="panel panel-default center-block">
         <div class="panel-heading">
@@ -22,9 +20,6 @@
             {{ '{{ form(form) }}' }}
         </div>
     </div>
-            
-
-    
 
     {% set hide_edit, hide_delete = true, true %}
     {% include 'crud/views/others/record_actions.html.twig.twig' %}
@@ -32,14 +27,6 @@
 {% endblock body %}
     
 {{ "{% block javascript %}"}}
-<script type="text/javascript">
-if ($(".style2").size()){   
-$('input[type="checkbox"].style2').checkbox({
-    buttonStyle: 'btn btn-base',
-    buttonStyleChecked: 'btn btn-success',
-    checkedClass: 'glyphicon glyphicon-check',
-    uncheckedClass: 'glyphicon glyphicon-unchecked'
-});
-}
-</script>
-{{ "{% endblock %}" }}       
+    {{ "{{ parent() }}" }}
+    <script src="{{ "{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}" }}"></script>
+{{ "{% endblock %}" }}

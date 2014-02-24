@@ -69,7 +69,7 @@ You can configure `config.yml` default query parameter names and templates
             sort_direction_name: direction # sort direction query parameter name
             distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
         template:
-            pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig # bootstrap sliding pagination controls template
+            pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig # bootstrap 3 sliding pagination controls template
             sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 ```
 
