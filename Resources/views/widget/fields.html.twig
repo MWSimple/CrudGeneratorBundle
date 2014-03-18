@@ -2,7 +2,8 @@
 {% spaceless %}
     <div class="form-group">
         {% set type = type|default('text') %}
-        <input class="form-control" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     </div>
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -10,13 +11,15 @@
 {% block textarea_widget %}
 {% spaceless %}
     <div class="input-group input-group-lg">
-        <textarea class="form-control" {{ block('widget_attributes') }}>{{ value }}</textarea>
+    	{% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+        <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
     </div>
 {% endspaceless %}
 {% endblock textarea_widget %}
 
 {% block checkbox_widget %}
 {% spaceless %}
-    <input type="checkbox" class="mws_checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	{% set attr = attr|merge({'class': (attr.class|default('') ~ ' mws_checkbox')|trim}) %}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
 {% endspaceless %}
 {% endblock checkbox_widget %}
