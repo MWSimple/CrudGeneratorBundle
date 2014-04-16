@@ -2,9 +2,6 @@
 
 namespace MWSimple\Bundle\CrudGeneratorBundle\Command;
 
-// use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Sensio\Bundle\GeneratorBundle\Command\Validators;
 use Sensio\Bundle\GeneratorBundle\Command\GenerateDoctrineCrudCommand;
 use MWSimple\Bundle\CrudGeneratorBundle\Generator\MWSimpleCrudGenerator;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
@@ -16,9 +13,6 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
  */
 class MWSimpleCrudCommand extends GenerateDoctrineCrudCommand
 {
-    // private $generator;
-    private $formGenerator;
-
     protected function configure()
     {
         parent::configure();
