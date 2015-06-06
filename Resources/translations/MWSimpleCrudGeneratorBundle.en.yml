@@ -8,8 +8,8 @@ views:
         list: %entity% list
         actions: Actions
         createnew: Create a new
-        pagprev: '&larr; Previous'
-        pagnext: 'Next &rarr;'
+        pagprev: 'Previous'
+        pagnext: 'Next'
         actions: Actions
     actions:
         show: show

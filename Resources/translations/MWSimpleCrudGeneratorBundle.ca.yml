@@ -8,8 +8,8 @@ views:
         list: %entity%: llista
         actions: Accions
         createnew: Crear
-        pagprev: '&larr; Anterior'
-        pagnext: 'Següent &rarr;'
+        pagprev: 'Anterior'
+        pagnext: 'Següent'
         actions: Accions
     actions:
         show: veure
