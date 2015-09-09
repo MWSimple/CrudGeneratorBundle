@@ -12,10 +12,10 @@
         }
     ],
     "require": {
-        "symfony/symfony": "~2.3",
-        "sensio/generator-bundle": "2.3.*",
-        "knplabs/knp-paginator-bundle": "v2.3.3",
-        "lexik/form-filter-bundle": "v2.0.2"
+        "symfony/symfony": ">2.2.0, ~2.7",
+        "sensio/generator-bundle": ">2.2.0, ~2.5",
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "lexik/form-filter-bundle": "~3.0",
     },
     "autoload": {
         "psr-0": { "MWSimple\\Bundle\\CrudGeneratorBundle": "" }
@@ -24,7 +24,7 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "2.3.x-dev"
+            "dev-master": "2.7.x-dev"
         }
     }
 }
