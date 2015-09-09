@@ -8,30 +8,12 @@ This bundle generates code cute you extending SensioGeneratorBundle using KnpPag
 
 Add following lines to your `composer.json` file:
 
-### Symfony 2.3.1 - 2.3.2
+### Symfony 2.7
 
 ```json
 "require": {
 	...
-	"mwsimple/crud-generator": "v2.3.2"
-}
-```
-
-### Symfony 2.3.3
-
-```json
-"require": {
-	...
-	"mwsimple/crud-generator": "v2.3.3"
-}
-```
-
-### Symfony 2.3.6 +
-
-```json
-"require": {
-	...
-	"mwsimple/crud-generator": "2.3.*@dev"
+	"mwsimple/crud-generator": "2.7.*@dev"
 }
 ```
 
